@@ -1,0 +1,23 @@
+name: Python Robot 🤖
+
+# 1. สั่งให้ทำงานเมื่อไหร่? (Trigger)
+on:
+  push:
+    branches: [ "main" ]  # ทำงานทุกครั้งที่มีการ Push มาที่ branch main
+
+# 2. ให้ทำอะไรบ้าง? (Jobs)
+jobs:
+  test-my-code:
+    runs-on: ubuntu-latest  # ขอเครื่องฟรีจาก GitHub (เป็น Ubuntu)
+
+    steps:
+    - name: 🚚 ดึงโค้ดล่าสุดมา (Checkout)
+      uses: actions/checkout@v3
+
+    - name: 🐍 ติดตั้ง Python (Setup Python)
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: 🧪 ทดสอบรันโค้ด (Test Run)
+      run: python main.py
